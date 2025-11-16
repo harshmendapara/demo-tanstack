@@ -4,6 +4,6 @@
 
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-
+document.title = "Vue TanStack Infinite Query Example"
 </script>
 
