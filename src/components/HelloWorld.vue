@@ -19,18 +19,15 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, onMounted, defineProps } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useInfiniteQuery } from '@tanstack/vue-query'
 
-defineProps({
-  msg: String,
-})
 const scrollBox = ref(null)
 const loadMoreTrigger = ref(null)
 
 const fetchTodos = async ({ pageParam = 1 }) => {
   const res = await fetch(
-    `https://jsonplaceholder.typicode.com/todos?_page=${pageParam}&_limit=20`
+    `https://jsonplaceholder.typicode.com/todos?_page=${pageParam}&_limit=15`
   )
   return res.json()
 }
@@ -44,7 +41,7 @@ const {
   queryKey: ['todos'],
   queryFn: fetchTodos,
   getNextPageParam: (lastPage, pages) => {
-    if (lastPage.length < 20) return undefined
+    if (lastPage.length < 15) return undefined
     return pages.length + 1
   },
 })
